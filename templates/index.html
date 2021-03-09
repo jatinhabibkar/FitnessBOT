@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <title>FITNESS GURU</title>
+
+</head>
+
+<body>  
+        <div class="chat container" id="container">
+            <div class="card">
+                <div class="card-content">
+                    <ul class="message" id="putdata">
+                        <!-- <li>
+                            <span class="teal-text">user</span>
+                            <span class="grey-text text-darken-3">message</span>
+                        </li>
+                        <li>
+                            <span class="teal-text">Name</span>
+                            <span class="grey-text text-darken-3">message</span>
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="card-action">
+                <ul class="message">
+                    <li>
+                        <input autofocus type="text" class="text" id="question">
+                        <button  id="sendbutton" class="btn" onclick="datasend(document.getElementById('question').value)">send</button>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+<style>
+#sendbutton{
+    width: 100%;
+}
+.chat span{
+    font-size: 0.9em;
+}
+#container{
+    height: 100px  !important;
+}
+.card .card-content{
+    height: 70vh;
+    overflow: scroll;
+}
+</style>
+    <script>
+        
+
+    function datasend(question) {
+        document.getElementById('putdata').innerHTML +=`<li>
+                            <span class="teal-text">USER :</span>
+                            <span class="grey-text text-darken-3">${question}</span>
+                        </li>`
+        
+        fetch('http://ip:5000/', {   // assuming the backend is hosted on the same server
+            method: 'PUT',
+            headers: {
+					"Content-Type": "application/json;charset=UTF-8"
+			},
+            body: JSON.stringify({'question':question}),
+        }).then(function(response) {
+            console.log(response.json().then(data=>{
+                
+                console.log(data.posts.replay)
+                document.getElementById('putdata').innerHTML +=
+                    `<li>
+                            <span class="teal-text">BOT : </span>
+                            <span class="grey-text text-darken-3">${data.posts.replay}</span>
+                        </li>`
+                
+            }))
+    })
+}
+
+
+    </script>
+
+</html>
