@@ -6,7 +6,7 @@ import json
 import time
 FILENAME="question.csv"
 
-SORRY="SORRY: i can't find question relead to your query"
+SORRY="SORRY: i can't find question relead to your query u can contact at phone.no:999-999-9999"
 
 #get data ready
 filedata=BOT.get_file_data(FILENAME)
@@ -51,4 +51,4 @@ def get_ans():
 
 
 if __name__ == '__main__':
-   app.run(host="ip.220",port=5000,debug = True)
+   app.run(host="localhost",port=5000,debug = True)

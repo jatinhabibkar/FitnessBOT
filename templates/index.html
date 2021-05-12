@@ -20,6 +20,11 @@
             <div class="card">
                 <div class="card-content">
                     <ul class="message" id="putdata">
+                        <li>
+                            <span class="teal-text">BOT</span>
+                            <span class="grey-text text-darken-3">hi there how can i help you</span>
+                        </li>
+
                         <!-- <li>
                             <span class="teal-text">user</span>
                             <span class="grey-text text-darken-3">message</span>
@@ -66,8 +71,9 @@
                             <span class="teal-text">USER :</span>
                             <span class="grey-text text-darken-3">${question}</span>
                         </li>`
-        
-        fetch('http://ip:5000/', {   // assuming the backend is hosted on the same server
+
+        document.getElementById('question').value=""
+        fetch('http://localhost:5000/', {   // assuming the backend is hosted on the same server
             method: 'PUT',
             headers: {
 					"Content-Type": "application/json;charset=UTF-8"
